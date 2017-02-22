@@ -32,7 +32,7 @@ const config = {
   // ----------------------------------
   compiler_babel : {
     cacheDirectory : true,
-    plugins        : ['transform-runtime', 'transform-decorators-legacy', ['import', [{ libraryName: 'antd', style: true }]]],
+    plugins        : ['transform-runtime', 'transform-decorators-legacy', ['import', [{ libraryName: 'antd', style: true }, { "libraryName": "material-ui", "libraryDirectory": "" }]]],
     presets        : ['es2015', 'react', 'stage-0']
   },
   compiler_devtool         : 'source-map',
