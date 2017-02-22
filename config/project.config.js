@@ -32,7 +32,8 @@ const config = {
   // ----------------------------------
   compiler_babel : {
     cacheDirectory : true,
-    plugins        : ['transform-runtime', 'transform-decorators-legacy', ['import', [{ libraryName: 'antd', style: true }, { "libraryName": "material-ui", "libraryDirectory": "" }]]],
+    plugins        : ['transform-runtime', 'transform-decorators-legacy', ['import', [{ libraryName: 'antd', style: true }]]],
+    // , { "libraryName": "material-ui", "libraryDirectory": "", "camel2DashComponentName": false }
     presets        : ['es2015', 'react', 'stage-0']
   },
   compiler_devtool         : 'source-map',
