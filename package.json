@@ -23,8 +23,9 @@
   },
   "betterScripts": {
     "compile": {
-      "command": "node bin/compile",
+      "command": "npm run clean && node bin/compile",
       "env": {
+        "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
     },
