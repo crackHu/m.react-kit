@@ -2,13 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-import Setting from 'material-ui/svg-icons/action/settings';
-import Add from 'material-ui/svg-icons/av/library-add';
-import Done from 'material-ui/svg-icons/action/done';
+import TextField from 'material-ui/TextField';
+import {List, ListItem} from 'material-ui/List';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
 
-const settingIcon = <Setting />;
-const addIcon = <Add />;
-const doneIcon = <Done />;
+import IconSetting from 'material-ui/svg-icons/action/settings';
+import IconAdd from 'material-ui/svg-icons/action/dashboard';
+import IconDone from 'material-ui/svg-icons/action/done';
+
+import Sortable from 'sortablejs'
+
+const settingIcon = <IconSetting />;
+const addIcon = <IconAdd />;
+const doneIcon = <IconDone />;
 
 const WidgetWindow = (props) => {
   return (
@@ -46,6 +54,12 @@ class BottomNavigationExampleSimple extends Component {
     selectedIndex: null
   };
 
+  componentDidMount = () => {
+    var el = document.getElementById('test');
+    var sortable = Sortable.create(el);
+    console.log('sortable', sortable)
+  }
+
   componentWillReceiveProps = (nextProps) => {
     this.setState({
       selectedIndex: null
@@ -58,6 +72,25 @@ class BottomNavigationExampleSimple extends Component {
     })
   };
   height = document.body.clientHeight - 56
+  content = (
+    <List id="test">
+      <TextField
+        defaultValue="Default Value"
+        floatingLabelText="Floating Label Text"
+      />
+      <SelectField
+        floatingLabelText="Frequency"
+        value={"Never"}
+      >
+        <MenuItem value={1} primaryText="Never" />
+        <MenuItem value={2} primaryText="Every Night" />
+        <MenuItem value={3} primaryText="Weeknights" />
+        <MenuItem value={4} primaryText="Weekends" />
+        <MenuItem value={5} primaryText="Weekly" />
+      </SelectField>
+      <DatePicker hintText="Portrait Dialog" />
+    </List>
+  )
 
   render() {
     return (
@@ -66,6 +99,7 @@ class BottomNavigationExampleSimple extends Component {
           <WidgetWindow selectedIndex={this.state.selectedIndex}>
             {this.props.children}
           </WidgetWindow>
+          {this.content}
         </div>
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
