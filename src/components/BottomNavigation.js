@@ -77,18 +77,12 @@ class BottomNavigationExampleSimple extends Component {
       <TextField
         defaultValue="Default Value"
         floatingLabelText="Floating Label Text"
+        disabled={true}
       />
-      <SelectField
-        floatingLabelText="Frequency"
-        value={"Never"}
-      >
-        <MenuItem value={1} primaryText="Never" />
-        <MenuItem value={2} primaryText="Every Night" />
-        <MenuItem value={3} primaryText="Weeknights" />
-        <MenuItem value={4} primaryText="Weekends" />
-        <MenuItem value={5} primaryText="Weekly" />
-      </SelectField>
-      <DatePicker hintText="Portrait Dialog" />
+      
+      <DatePicker
+        disabled={true}
+        hintText="Portrait Dialog" />
     </List>
   )
 
