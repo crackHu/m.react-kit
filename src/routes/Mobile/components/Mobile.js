@@ -24,32 +24,10 @@ import IconName from 'material-ui/svg-icons/action/account-circle';
 import IconTel from 'material-ui/svg-icons/hardware/smartphone';
 import {blue500, yellow600} from 'material-ui/styles/colors';
 
-const Widgets = () => (
-  <div>
-    <MobileTearSheet>
-      <List id='test'>
-        <ListItem primaryText="输入框" leftIcon={<IconInput />} />
-        <ListItem primaryText="单选" leftIcon={<IconRadio />} />
-        <ListItem primaryText="多选" leftIcon={<IconCheckbox />} />
-        <ListItem primaryText="下拉框" leftIcon={<IconSelect />} />
-        <ListItem primaryText="评分" leftIcon={<IconRate />} />
-      </List>
-      <Divider />
-      <List>
-        <ListItem primaryText="文本" leftIcon={<IconText />} />
-        <ListItem primaryText="图片" leftIcon={<IconImage />} />
-        <ListItem primaryText="日期" leftIcon={<IconDate />} />
-        <ListItem primaryText="姓名" leftIcon={<IconName />} />
-        <ListItem primaryText="联系电话" leftIcon={<IconTel />} />
-      </List>
-    </MobileTearSheet>
-  </div>
-);
-
 class DrawerComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {open: false, formItems: []};
   }
 
   componentDidMount = () => {
@@ -72,16 +50,49 @@ class DrawerComponent extends React.Component {
 
   handleClose = () => this.setState({open: false});
 
+  handleAddItem = (event) => {
+    // This prevents ghost click.
+    const { type } = event.currentTarget.dataset
+    const items = this.state.formItems.concat()
+    items.push(type)
+    this.setState({
+      open: false,
+      formItems: items
+    });
+  };
+
+  Widgets = () => (
+    <div>
+      <MobileTearSheet>
+        <List id='test'>
+          <ListItem data-type='input' target='input' onTouchTap={this.handleAddItem} primaryText="输入框" leftIcon={<IconInput />} />
+          <ListItem data-type='radio' onTouchTap={this.handleAddItem} primaryText="单选" leftIcon={<IconRadio />} />
+          <ListItem data-type='checkbox' onTouchTap={this.handleAddItem} primaryText="多选" leftIcon={<IconCheckbox />} />
+          <ListItem data-type='select' onTouchTap={this.handleAddItem} primaryText="下拉框" leftIcon={<IconSelect />} />
+          <ListItem data-type='rate' onTouchTap={this.handleAddItem} primaryText="评分" leftIcon={<IconRate />} />
+        </List>
+        <Divider />
+        <List>
+          <ListItem data-type='text' onTouchTap={this.handleAddItem} primaryText="文本" leftIcon={<IconText />} />
+          <ListItem data-type='image' onTouchTap={this.handleAddItem} primaryText="图片" leftIcon={<IconImage />} />
+          <ListItem data-type='date' onTouchTap={this.handleAddItem} primaryText="日期" leftIcon={<IconDate />} />
+          <ListItem data-type='name' onTouchTap={this.handleAddItem} primaryText="姓名" leftIcon={<IconName />} />
+          <ListItem data-type='tel' onTouchTap={this.handleAddItem} primaryText="联系电话" leftIcon={<IconTel />} />
+        </List>
+      </MobileTearSheet>
+    </div>
+);
+
   render() {
     return (
-      <BottomNavigation>
+      <BottomNavigation formItems={this.state.formItems}>
         <Drawer
           docked={false}
           width={250}
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <Widgets />
+          <this.Widgets />
         </Drawer>
       </BottomNavigation>
     );
