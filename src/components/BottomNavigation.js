@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+﻿import React, {Component, PropTypes} from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
@@ -73,7 +73,6 @@ class BottomNavigationExampleSimple extends Component {
     })
   };
   height = document.body.clientHeight - 56
-<<<<<<< HEAD
   content = (
     <List id="test">
       <TextField
@@ -87,8 +86,6 @@ class BottomNavigationExampleSimple extends Component {
         hintText="Portrait Dialog" />
     </List>
   )
-=======
->>>>>>> 8cd9a2b7da13737732e70594a8043066e778f9f9
 
   render() {
     return (
