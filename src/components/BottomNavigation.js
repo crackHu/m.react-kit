@@ -7,6 +7,7 @@ import {List, ListItem} from 'material-ui/List';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
+import Form from './Form'
 
 import IconSetting from 'material-ui/svg-icons/action/settings';
 import IconAdd from 'material-ui/svg-icons/action/dashboard';
@@ -72,6 +73,7 @@ class BottomNavigationExampleSimple extends Component {
     })
   };
   height = document.body.clientHeight - 56
+<<<<<<< HEAD
   content = (
     <List id="test">
       <TextField
@@ -85,6 +87,8 @@ class BottomNavigationExampleSimple extends Component {
         hintText="Portrait Dialog" />
     </List>
   )
+=======
+>>>>>>> 8cd9a2b7da13737732e70594a8043066e778f9f9
 
   render() {
     return (
@@ -93,7 +97,7 @@ class BottomNavigationExampleSimple extends Component {
           <WidgetWindow selectedIndex={this.state.selectedIndex}>
             {this.props.children}
           </WidgetWindow>
-          {this.content}
+          <Form items={this.props.formItems}/>
         </div>
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
